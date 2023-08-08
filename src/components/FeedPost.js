@@ -1,19 +1,25 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, Image, View, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import LikeImage from "../../assets/images/like.png";
 import {
   Entypo,
   AntDesign,
   FontAwesome5,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import LikeImage from "../../assets/images/like.png";
+import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 
 const FeedPost = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
 
+  const navigation = useNavigation();
   return (
-    <View style={styles.post}>
-      <View style={styles.header}>
+    <Pressable style={styles.post}>
+      {/* Header */}
+      <Pressable
+        style={styles.header}
+        onPress={() => navigation.navigate("Profile", { id: post.User.id })}
+      >
         <Image source={{ uri: post.User.image }} style={styles.profileImage} />
         <View>
           <Text style={styles.name}>{post.User.name}</Text>
@@ -25,18 +31,20 @@ const FeedPost = ({ post }) => {
           color="gray"
           style={styles.icon}
         />
-      </View>
-      {/* Post body with description and image */}
-      <Text style={styles.description}>{post.description}</Text>
-      {post.image && (
-        <Image
-          source={{ uri: post.image }}
-          style={styles.image}
-          resizeMode="cover"
-        />
+      </Pressable>
+
+      {/* Body */}
+      {post.description && (
+        <Text style={styles.description}>{post.description}</Text>
       )}
-      {/* Post footer with likes and button */}
+
+      {post.image && (
+        <Image source={{ uri: post.image }} style={styles.image} />
+      )}
+
+      {/* Footer */}
       <View style={styles.footer}>
+        {/* Stats row */}
         <View style={styles.statsRow}>
           <Image source={LikeImage} style={styles.likeIcon} />
           <Text style={styles.likedBy}>
@@ -44,6 +52,7 @@ const FeedPost = ({ post }) => {
           </Text>
           <Text style={styles.shares}>{post.numberOfShares} shares</Text>
         </View>
+        {/* Buttons Row  */}
         <View style={styles.buttonsRow}>
           <Pressable
             onPress={() => setIsLiked(!isLiked)}
@@ -63,10 +72,12 @@ const FeedPost = ({ post }) => {
               Like
             </Text>
           </Pressable>
+
           <View style={styles.iconButton}>
-            <FontAwesome5 name="comment-alt" size={16} color="gray" />
-            <Text style={styles.iconButtonText}>comment</Text>
+            <FontAwesome5 name="comment-alt" size={18} color="gray" />
+            <Text style={styles.iconButtonText}>Comment</Text>
           </View>
+
           <View style={styles.iconButton}>
             <MaterialCommunityIcons
               name="share-outline"
@@ -77,21 +88,21 @@ const FeedPost = ({ post }) => {
           </View>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
-export default FeedPost;
 const styles = StyleSheet.create({
   post: {
-    backgroundColor: "#fff",
     marginVertical: 5,
+    backgroundColor: "#fff",
   },
+  // Header
   header: {
-    padding: 10,
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
-    width: "100%",
+    padding: 10,
   },
   profileImage: {
     width: 40,
@@ -108,21 +119,27 @@ const styles = StyleSheet.create({
   icon: {
     marginLeft: "auto",
   },
+
+  // Body
   description: {
+    paddingHorizontal: 10,
     lineHeight: 20,
-    padding: 10,
+    letterSpacing: 0.3,
   },
   image: {
     width: "100%",
     aspectRatio: 1,
+    marginTop: 10,
   },
+
+  // Footer
   footer: {
     paddingHorizontal: 10,
   },
   statsRow: {
+    paddingVertical: 10,
     flexDirection: "row",
     borderBottomWidth: StyleSheet.hairlineWidth,
-    paddingVertical: 10,
     borderColor: "lightgray",
   },
   likeIcon: {
@@ -134,9 +151,11 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   shares: {
-    color: "gray",
     marginLeft: "auto",
+    color: "gray",
   },
+
+  // Buttons row
   buttonsRow: {
     marginVertical: 10,
     flexDirection: "row",
@@ -147,8 +166,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   iconButtonText: {
-    color: "gray",
     marginLeft: 5,
+    color: "gray",
     fontWeight: "500",
   },
 });
+
+export default FeedPost;
