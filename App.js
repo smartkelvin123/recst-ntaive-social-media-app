@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-
+import CreatePostScreen from "./src/screens/CreatePostScreen";
 import FeedScreen from "./src/screens/FeedScreen";
 
 export default function App() {
@@ -8,7 +8,8 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="auto" />
 
-      <FeedScreen />
+      {/* <FeedScreen /> */}
+      <CreatePostScreen />
     </View>
   );
 }
