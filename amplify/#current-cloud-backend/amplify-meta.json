@@ -1,0 +1,93 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-socailmediaapp-staging-201047-authRole",
+      "UnauthRoleArn": "arn:aws:iam::162977088643:role/amplify-socailmediaapp-staging-201047-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::162977088643:role/amplify-socailmediaapp-staging-201047-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-socailmediaapp-staging-201047-deployment",
+      "UnauthRoleName": "amplify-socailmediaapp-staging-201047-unauthRole",
+      "StackName": "amplify-socailmediaapp-staging-201047",
+      "StackId": "arn:aws:cloudformation:us-east-1:162977088643:stack/amplify-socailmediaapp-staging-201047/aa15bd80-3627-11ee-8694-0ed426a1090d",
+      "AmplifyAppId": "d3ntw75jjjoa1s"
+    }
+  },
+  "auth": {
+    "Socailmediaapp": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS",
+            "REQUIRES_UPPERCASE"
+          ]
+        },
+        "signupAttributes": [],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "PHONE_NUMBER"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "output": {
+        "CreatedSNSRole": "arn:aws:iam::162977088643:role/sns49445172201047-staging",
+        "UserPoolId": "us-east-1_kOsLQrmIo",
+        "AppClientIDWeb": "4gmfb5e1s91h2tvdktf4s47md8",
+        "AppClientID": "3s1gc1u11m021bari0qd4epieq",
+        "IdentityPoolId": "us-east-1:69ab7f21-e709-48e8-b4fc-02c55806999e",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:162977088643:userpool/us-east-1_kOsLQrmIo",
+        "IdentityPoolName": "testAuthIdentityPool__staging",
+        "UserPoolName": "Socailmediaapp"
+      },
+      "lastPushTimeStamp": "2023-08-09T05:15:04.185Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-socailmediaapp-staging-201047-deployment/amplify-cfn-templates/auth/Socailmediaapp-cloudformation-template.json",
+        "logicalId": "authSocailmediaapp"
+      }
+    }
+  },
+  "api": {
+    "Socailmediaapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ]
+        },
+        "GraphQLAPIIdOutput": "rpadq7vstfegfpyilq4tvc2tcm",
+        "GraphQLAPIEndpointOutput": "https://suau2udg25cmha6wk32tddn7oi.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-h5jszaavnzcyrc3hcbgzk3ibpe"
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-socailmediaapp-staging-201047-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiSocailmediaapp"
+      },
+      "lastPushTimeStamp": "2023-08-09T05:15:06.413Z",
+      "lastPushDirHash": "qC49ZjmLrZds60WLWXdbkopjkVE="
+    }
+  }
+}

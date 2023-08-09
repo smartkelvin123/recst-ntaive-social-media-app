@@ -1,0 +1,13 @@
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  image: String
+}
+
+type Post @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  description: String
+  image: String
+  numberoflikes: Int
+  numberofshare: Int
+}

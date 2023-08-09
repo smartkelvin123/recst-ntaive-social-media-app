@@ -18,6 +18,9 @@ import {
   Entypo,
 } from "@expo/vector-icons";
 import user from "../../assets/data/user.json";
+import { useEffect, useState } from "react";
+import { Auth, DataStore } from "aws-amplify";
+import { User, Post } from "../models";
 
 const dummy_img =
   "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/user.png";
@@ -26,6 +29,9 @@ const bg = "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg";
 const profilePictureWidth = Dimensions.get("window").width * 0.4;
 
 const ProfileScreenHeader = ({ user, isMe = false }) => {
+  const [user, setUser] = useState(null);
+  const [posts, setPosts] = useState([]);
+  const [isMe, setIsMe] = useState(false);
   const navigation = useNavigation();
 
   const signOut = async () => {
@@ -36,6 +42,46 @@ const ProfileScreenHeader = ({ user, isMe = false }) => {
     return <ActivityIndicator />;
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      // get the authenticated user
+      const userData = await Auth.currentAuthenticatedUser();
+      // take the user id from the route or from the authenticated user
+      const userId = route?.params?.id || userData?.attributes?.sub;
+      if (!userId) {
+        return;
+      }
+
+      // keep track if we are querying the data about the authenticated user
+      const isMe = userId === userData?.attributes?.sub;
+      setIsMe(isMe);
+
+      // query the database user
+      const dbUser = await DataStore.query(User, userId);
+
+      if (!dbUser) {
+        // if we couldn't find the user in the database
+        if (isMe) {
+          // and it is my profile, then redirect to Update Profile page
+          navigation.navigate("Update Profile");
+        } else {
+          // otherwise, Alert the user
+          Alert.alert("User not found!");
+        }
+        return;
+      }
+      // save the user in the state
+      setUser(dbUser);
+
+      // query his posts
+      const dbPosts = await DataStore.query(Post, (p) =>
+        p.postUserId("eq", userId)
+      );
+      setPosts(dbPosts);
+    };
+
+    fetchData();
+  }, []);
   return (
     <View style={styles.container}>
       <Image source={{ uri: bg }} style={styles.bg} />

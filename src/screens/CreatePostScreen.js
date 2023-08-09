@@ -12,6 +12,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Entypo } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import { useNavigation } from "@react-navigation/native";
+import { DataStore } from "@aws-amplify/datastore";
+import { Post } from "../models";
+import { Storage } from "aws-amplify";
 
 const user = {
   id: "u1",
@@ -23,10 +26,56 @@ const user = {
 const CreatePostScreen = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
-
-  const navigation = useNavigation();
+  const [user, setUser] = useState();
 
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
+
+  const uploadFile = async (fileUri) => {
+    try {
+      const response = await fetch(fileUri);
+      const blob = await response.blob();
+      const key = "yourKeyHere.png";
+      await Storage.put(key, blob, {
+        contentType: "image/png", // contentType is optional
+      });
+      return key;
+    } catch (err) {
+      console.log("Error uploading file:", err);
+    }
+  };
+
+  const onPost = async () => {
+    const newPost = {
+      description: description,
+      numberOfLikes: 0,
+      numberOfShares: 0,
+      postUserId: user.id,
+      _version: 1,
+    };
+    if (image) {
+      newPost.image = await uploadFile(image);
+    }
+    await DataStore.save(new Post(newPost));
+    setDescription("");
+    setImage("");
+    navigation.goBack();
+  };
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const userData = await Auth.currentAuthenticatedUser();
+      const dbUser = await DataStore.query(User, userData.attributes.sub);
+      if (dbUser) {
+        setUser(dbUser);
+        console.log(dbUser);
+      } else {
+        navigation.navigate("Update profile");
+      }
+    };
+
+    fetchUser();
+  }, []);
 
   const onSubmit = () => {
     console.warn("On submit", description);

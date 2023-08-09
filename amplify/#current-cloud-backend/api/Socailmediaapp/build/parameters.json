@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "Socailmediaapp",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "S3DeploymentBucket": "amplify-socailmediaapp-staging-201047-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/af5b9c28842b8d8cde15e2874a275d98050ea622"
+}

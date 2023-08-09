@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-socailmediaapp-staging-201047-authRole",
+      "UnauthRoleArn": "arn:aws:iam::162977088643:role/amplify-socailmediaapp-staging-201047-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::162977088643:role/amplify-socailmediaapp-staging-201047-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-socailmediaapp-staging-201047-deployment",
+      "UnauthRoleName": "amplify-socailmediaapp-staging-201047-unauthRole",
+      "StackName": "amplify-socailmediaapp-staging-201047",
+      "StackId": "arn:aws:cloudformation:us-east-1:162977088643:stack/amplify-socailmediaapp-staging-201047/aa15bd80-3627-11ee-8694-0ed426a1090d",
+      "AmplifyAppId": "d3ntw75jjjoa1s"
+    },
+    "categories": {
+      "auth": {
+        "Socailmediaapp": {}
+      }
+    }
+  }
+}
