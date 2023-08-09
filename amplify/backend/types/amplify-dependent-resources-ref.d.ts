@@ -17,5 +17,11 @@ export type AmplifyDependentResourcesAttributes = {
       "UserPoolId": "string",
       "UserPoolName": "string"
     }
+  },
+  "storage": {
+    "s3socailmediaappstorage88cfae7c": {
+      "BucketName": "string",
+      "Region": "string"
+    }
   }
 }

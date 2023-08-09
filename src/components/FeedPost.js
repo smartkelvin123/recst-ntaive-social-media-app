@@ -8,6 +8,9 @@ import {
 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect, useState } from "react";
+import { S3Image } from "aws-amplify-react-native";
+
+<S3Image imgKey={post.image} style={styles.image} resizeMode="cover" />;
 
 const FeedPost = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);

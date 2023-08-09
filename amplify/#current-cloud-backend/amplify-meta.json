@@ -12,6 +12,37 @@
       "AmplifyAppId": "d3ntw75jjjoa1s"
     }
   },
+  "api": {
+    "Socailmediaapp": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AWS_IAM"
+            }
+          ],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 30,
+              "description": "api key description"
+            },
+            "authenticationType": "API_KEY"
+          }
+        },
+        "GraphQLAPIIdOutput": "rpadq7vstfegfpyilq4tvc2tcm",
+        "GraphQLAPIEndpointOutput": "https://suau2udg25cmha6wk32tddn7oi.appsync-api.us-east-1.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-h5jszaavnzcyrc3hcbgzk3ibpe"
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "lastPushTimeStamp": "2023-08-09T05:45:21.246Z",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-socailmediaapp-staging-201047-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "logicalId": "apiSocailmediaapp"
+      }
+    }
+  },
   "auth": {
     "Socailmediaapp": {
       "customAuth": false,
@@ -51,43 +82,29 @@
         "IdentityPoolName": "testAuthIdentityPool__staging",
         "UserPoolName": "Socailmediaapp"
       },
-      "lastPushTimeStamp": "2023-08-09T05:15:04.185Z",
+      "lastPushTimeStamp": "2023-08-09T05:45:21.390Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-socailmediaapp-staging-201047-deployment/amplify-cfn-templates/auth/Socailmediaapp-cloudformation-template.json",
         "logicalId": "authSocailmediaapp"
-      }
+      },
+      "lastPushDirHash": "MFiCGiufXZt2vSmEMrLHKiImn7Q="
     }
   },
-  "api": {
-    "Socailmediaapp": {
-      "service": "AppSync",
+  "storage": {
+    "s3socailmediaappstorage88cfae7c": {
+      "service": "S3",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 30,
-              "description": "api key description"
-            }
-          },
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ]
-        },
-        "GraphQLAPIIdOutput": "rpadq7vstfegfpyilq4tvc2tcm",
-        "GraphQLAPIEndpointOutput": "https://suau2udg25cmha6wk32tddn7oi.appsync-api.us-east-1.amazonaws.com/graphql",
-        "GraphQLAPIKeyOutput": "da2-h5jszaavnzcyrc3hcbgzk3ibpe"
-      },
+      "lastPushTimeStamp": "2023-08-09T05:45:21.390Z",
       "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-socailmediaapp-staging-201047-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-        "logicalId": "apiSocailmediaapp"
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-socailmediaapp-staging-201047-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
+        "logicalId": "storages3socailmediaappstorage88cfae7c"
       },
-      "lastPushTimeStamp": "2023-08-09T05:15:06.413Z",
-      "lastPushDirHash": "qC49ZjmLrZds60WLWXdbkopjkVE="
+      "output": {
+        "BucketName": "socail-media-app-storage-88cfae7c201047-staging",
+        "Region": "us-east-1"
+      },
+      "lastPushDirHash": "30sxa4gRV7pxopyQxrWAsYmn4Yk="
     }
   }
 }

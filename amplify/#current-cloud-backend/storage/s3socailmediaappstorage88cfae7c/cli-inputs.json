@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3socailmediaappstorage88cfae7c",
+  "bucketName": "socail-media-app-storage-88cfae7c",
+  "policyUUID": "6f2ccc8c",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ]
+}

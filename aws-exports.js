@@ -3,6 +3,10 @@
 
 const awsmobile = {
     "aws_project_region": "us-east-1",
+    "aws_appsync_graphqlEndpoint": "https://suau2udg25cmha6wk32tddn7oi.appsync-api.us-east-1.amazonaws.com/graphql",
+    "aws_appsync_region": "us-east-1",
+    "aws_appsync_authenticationType": "API_KEY",
+    "aws_appsync_apiKey": "da2-h5jszaavnzcyrc3hcbgzk3ibpe",
     "aws_cognito_identity_pool_id": "us-east-1:69ab7f21-e709-48e8-b4fc-02c55806999e",
     "aws_cognito_region": "us-east-1",
     "aws_user_pools_id": "us-east-1_kOsLQrmIo",
@@ -29,10 +33,8 @@ const awsmobile = {
     "aws_cognito_verification_mechanisms": [
         "PHONE_NUMBER"
     ],
-    "aws_appsync_graphqlEndpoint": "https://suau2udg25cmha6wk32tddn7oi.appsync-api.us-east-1.amazonaws.com/graphql",
-    "aws_appsync_region": "us-east-1",
-    "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": "da2-h5jszaavnzcyrc3hcbgzk3ibpe"
+    "aws_user_files_s3_bucket": "socail-media-app-storage-88cfae7c201047-staging",
+    "aws_user_files_s3_bucket_region": "us-east-1"
 };
 
 

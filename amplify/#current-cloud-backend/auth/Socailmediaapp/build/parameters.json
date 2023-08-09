@@ -1,6 +1,6 @@
 {
   "identityPoolName": "testAuthIdentityPool",
-  "allowUnauthenticatedIdentities": false,
+  "allowUnauthenticatedIdentities": true,
   "resourceNameTruncated": "socail49445172",
   "userPoolName": "Socailmediaapp",
   "autoVerifiedAttributes": [

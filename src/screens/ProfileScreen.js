@@ -42,6 +42,14 @@ const ProfileScreenHeader = ({ user, isMe = false }) => {
     return <ActivityIndicator />;
   }
 
+  {
+    user?.image ? (
+      <S3Image imgKey={user.image} style={styles.image} />
+    ) : (
+      <Image source={{ uri: dummy_img }} style={styles.image} />
+    );
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       // get the authenticated user

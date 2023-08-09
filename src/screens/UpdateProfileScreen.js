@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as ImagePicker from "expo-image-picker";
+import { API, graphqlOperation, Auth } from "aws-amplify";
 
 const dummy_img =
   "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/user.png";
@@ -35,6 +36,41 @@ const UpdateProfileScreen = () => {
 
   const onSave = async () => {
     console.warn("Saving the user profile");
+  };
+
+  const uploadFile = async (fileUri) => {
+    try {
+      const response = await fetch(fileUri);
+      const blob = await response.blob();
+      const key = `${uuidv4()}.png`;
+      await Storage.put(key, blob, {
+        contentType: "image/png",
+      });
+      return key;
+    } catch (err) {
+      console.log("Error uploading file:", err);
+    }
+  };
+
+  const onCreate = async () => {
+    if (image) {
+      newUser.image = await uploadFile(image);
+    }
+  };
+
+  const onUpdate = async () => {
+    let imageKey;
+    if (image) {
+      imageKey = await uploadFile(image);
+    }
+    await DataStore.save(
+      User.copyOf(user, (updated) => {
+        updated.name = name;
+        if (imageKey) {
+          updated.image = imageKey;
+        }
+      })
+    );
   };
 
   return (
